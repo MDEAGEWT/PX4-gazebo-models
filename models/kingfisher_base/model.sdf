@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <!-- Kingfisher quadrotor (NeuroBEM drone)
+       Physical params from drone_params_neurobem.yaml
+       Visual mesh reused from x500_base -->
+  <model name='kingfisher_base'>
+    <pose>0 0 .15 0 0 0</pose>
+    <self_collide>false</self_collide>
+    <static>false</static>
+    <link name="base_link">
+      <inertial>
+        <!-- NeuroBEM: 0.772 kg -->
+        <mass>0.772</mass>
+        <inertia>
+          <ixx>0.0025</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0021</iyy>
+          <iyz>0</iyz>
+          <izz>0.0043</izz>
+        </inertia>
+      </inertial>
+      <gravity>true</gravity>
+      <velocity_decay/>
+      <!-- Reuse x500 visuals (appearance only, physics decoupled) -->
+      <visual name="base_link_visual">
+        <pose>0 0 .025 0 0 3.141592654</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://x500_base/meshes/NXP-HGD-CF.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="5010_motor_base_0">
+        <pose>0.092 0.092 .032 0 0 -.45</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="5010_motor_base_1">
+        <pose>-0.092 0.092 .032 0 0 -.45</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="5010_motor_base_2">
+        <pose>0.092 -0.092 .032 0 0 -.45</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="5010_motor_base_3">
+        <pose>-0.092 -0.092 .032 0 0 -.45</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="base_link_collision_0">
+        <pose>0 0 .007 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.187 0.187 0.04</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="base_link_collision_1">
+        <pose>0 -0.052 -.08 -0.35 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.12</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="base_link_collision_2">
+        <pose>0 0.052 -.08 0.35 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.12</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="base_link_collision_3">
+        <pose>0 -0.07 -.13 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="base_link_collision_4">
+        <pose>0 0.07 -.13 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <sensor name="air_pressure_sensor" type="air_pressure">
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <pressure>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>3</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+      </sensor>
+      <sensor name="magnetometer_sensor" type="magnetometer">
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <magnetometer>
+          <x><noise type="gaussian"><stddev>0.0001</stddev></noise></x>
+          <y><noise type="gaussian"><stddev>0.0001</stddev></noise></y>
+          <z><noise type="gaussian"><stddev>0.0001</stddev></noise></z>
+        </magnetometer>
+      </sensor>
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x><noise type="gaussian"><mean>0.0</mean><stddev>0.0008726646</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0.0</mean><stddev>0.0008726646</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0.0</mean><stddev>0.0008726646</stddev></noise></z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x><noise type="gaussian"><mean>0.0</mean><stddev>0.00637</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0.0</mean><stddev>0.00637</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0.0</mean><stddev>0.00686</stddev></noise></z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+      <sensor name="navsat_sensor" type="navsat">
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+      </sensor>
+    </link>
+    <!-- Rotor 0: front-right (FR), CCW
+         NeuroBEM motor mapping: motor_0 = FR = mot2
+         PX4 X-config: rotor_0 at (+x, -y) -->
+    <link name="rotor_0">
+      <gravity>true</gravity>
+      <self_collide>false</self_collide>
+      <velocity_decay/>
+      <pose>0.092 -0.092 0.04 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>1.0e-07</ixx>
+          <iyy>4.0e-06</iyy>
+          <izz>4.0e-06</izz>
+        </inertia>
+      </inertial>
+      <visual name="rotor_0_visual">
+        <pose>-0.012 -0.077 -0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.45 0.45 0.45</scale>
+            <uri>model://x500_base/meshes/1345_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name="rotor_0_visual_motor_bell">
+        <pose>0 0 -.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Bell.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="rotor_0_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="rotor_0_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1e+16</lower><upper>1e+16</upper></limit>
+        <dynamics><spring_reference>0</spring_reference><spring_stiffness>0</spring_stiffness></dynamics>
+      </axis>
+    </joint>
+    <!-- Rotor 1: back-left (BL), CCW -->
+    <link name="rotor_1">
+      <gravity>true</gravity>
+      <self_collide>false</self_collide>
+      <velocity_decay/>
+      <pose>-0.092 0.092 0.04 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>1.0e-07</ixx>
+          <iyy>4.0e-06</iyy>
+          <izz>4.0e-06</izz>
+        </inertia>
+      </inertial>
+      <visual name="rotor_1_visual">
+        <pose>-0.012 -0.077 -0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.45 0.45 0.45</scale>
+            <uri>model://x500_base/meshes/1345_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name="rotor_1_visual_motor_bell">
+        <pose>0 0 -.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Bell.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="rotor_1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="rotor_1_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1e+16</lower><upper>1e+16</upper></limit>
+        <dynamics><spring_reference>0</spring_reference><spring_stiffness>0</spring_stiffness></dynamics>
+      </axis>
+    </joint>
+    <!-- Rotor 2: front-left (FL), CW -->
+    <link name="rotor_2">
+      <gravity>true</gravity>
+      <self_collide>false</self_collide>
+      <velocity_decay/>
+      <pose>0.092 0.092 0.04 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>1.0e-07</ixx>
+          <iyy>4.0e-06</iyy>
+          <izz>4.0e-06</izz>
+        </inertia>
+      </inertial>
+      <visual name="rotor_2_visual">
+        <pose>-0.012 -0.077 -0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.45 0.45 0.45</scale>
+            <uri>model://x500_base/meshes/1345_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name="rotor_2_visual_motor_bell">
+        <pose>0 0 -.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Bell.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="rotor_2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="rotor_2_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1e+16</lower><upper>1e+16</upper></limit>
+        <dynamics><spring_reference>0</spring_reference><spring_stiffness>0</spring_stiffness></dynamics>
+      </axis>
+    </joint>
+    <!-- Rotor 3: back-right (BR), CW -->
+    <link name="rotor_3">
+      <gravity>true</gravity>
+      <self_collide>false</self_collide>
+      <velocity_decay/>
+      <pose>-0.092 -0.092 0.04 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>1.0e-07</ixx>
+          <iyy>4.0e-06</iyy>
+          <izz>4.0e-06</izz>
+        </inertia>
+      </inertial>
+      <visual name="rotor_3_visual">
+        <pose>-0.012 -0.077 -0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.45 0.45 0.45</scale>
+            <uri>model://x500_base/meshes/1345_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name="rotor_3_visual_motor_bell">
+        <pose>0 0 -.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.53 0.53 0.53</scale>
+            <uri>model://x500_base/meshes/5010Bell.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="rotor_3_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="rotor_3_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit><lower>-1e+16</lower><upper>1e+16</upper></limit>
+        <dynamics><spring_reference>0</spring_reference><spring_stiffness>0</spring_stiffness></dynamics>
+      </axis>
+    </joint>
+  </model>
+</sdf>
