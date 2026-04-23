@@ -75,7 +75,7 @@
       <joint_prefix>rotor_</joint_prefix>
       <num_motors>4</num_motors>
       <history_length>20</history_length>
-      <update_rate>400</update_rate>
+      <update_rate>100</update_rate>
       <scale_factor>1.0</scale_factor>
       <!-- x500 idle 150 rad/s, hover ~620, max 1000 — disable NN below 300 -->
       <motor_active_threshold>300.0</motor_active_threshold>
