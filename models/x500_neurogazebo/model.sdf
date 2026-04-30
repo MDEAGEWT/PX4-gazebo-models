@@ -70,7 +70,7 @@
     </plugin>
     <!-- NN Residual: real x500 flight-trained (Gz physics residual, k_t*omega^2 based) -->
     <plugin filename="NeuroDynamicsPlugin" name="neurogazebo::NeuroDynamicsPlugin">
-      <engine_path>/home/user/neurogazebo/workspace/logs/real_x500_latest/network.trt</engine_path>
+      <engine_path>/home/user/neurogazebo/workspace/logs/x500_active/network.trt</engine_path>
       <link_name>base_link</link_name>
       <joint_prefix>rotor_</joint_prefix>
       <num_motors>4</num_motors>
