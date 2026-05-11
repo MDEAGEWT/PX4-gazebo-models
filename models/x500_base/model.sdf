@@ -6,8 +6,12 @@
     <static>false</static>
     <link name="base_link">
       <inertial>
-        <mass>2.0</mass>
+        <!-- 2026-05-11: base_link mass bumped 2.0 -> 2.0227 so that total
+             sim drone mass (base + 4 rotors @ 0.016076923) = 2.087 kg
+             matches real x500 measurement. See wiki/x500_drone.md. -->
+        <mass>2.0226923076923077</mass>
         <inertia>
+          <!-- Not scaled (~1.1% change negligible; pendulum re-measure pending) -->
           <ixx>0.02166666666666667</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
