@@ -19,6 +19,10 @@
       <cmd_min>150</cmd_min>
       <cmd_max>1000</cmd_max>
       <slowdown>10</slowdown>
+      <!-- pure transport delay [s]: CBNU bench value is 0.108, but that
+           destabilises the PX4 closed-loop attitude controller in SITL.
+           tau(omega) still provides realistic actuator lag. -->
+      <input_delay>0.0</input_delay>
       <turning_direction_0>ccw</turning_direction_0>
       <turning_direction_1>ccw</turning_direction_1>
       <turning_direction_2>cw</turning_direction_2>
