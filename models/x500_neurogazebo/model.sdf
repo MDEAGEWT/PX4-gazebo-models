@@ -4,13 +4,13 @@
     <include merge='true'>
       <uri>model://x500_base</uri>
     </include>
-    <!-- CBNU V3 actuator model — replaces 4x MulticopterMotorModel.
+    <!-- ODM (이동우 박사님 모터 모델, CBNU 시험대 fit, V3 variant) — replaces 4x MulticopterMotorModel.
          PWM->omega_ss (deadband) -> 108ms input delay -> tau(omega) lag ->
          T=kT(omega)*omega^2.  Writes rotor joint velocity so
          NeuroDynamicsPlugin keeps reading omega unchanged.
-         See gz_plugin/ActuatorV3Plugin.hh and
+         See gz_plugin/ActuatorODMPlugin.hh and
          docs/superpowers/specs/2026-05-14-actuator-v3-plugin-design.md -->
-    <plugin filename="ActuatorV3Plugin" name="neurogazebo::ActuatorV3Plugin">
+    <plugin filename="ActuatorODMPlugin" name="neurogazebo::ActuatorODMPlugin">
       <link_name>base_link</link_name>
       <joint_prefix>rotor_</joint_prefix>
       <num_motors>4</num_motors>
