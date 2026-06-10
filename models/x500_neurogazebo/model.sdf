@@ -54,6 +54,9 @@
       <drag_z>0.0</drag_z>
       <mass>2.087</mass>
       <motor_active_threshold>100</motor_active_threshold>
+      <!-- vehicle individuality: hover CCW-CW pair diff -> +0.037 N·m yaw trim
+           (identify_asymmetry.py, drone_144_260601_hold run2; 0.037→0.030 트림: pair_diff 0.195→0.159=real) -->
+      <yaw_bias_torque>0.030</yaw_bias_torque>
     </plugin>
   </model>
 </sdf>
