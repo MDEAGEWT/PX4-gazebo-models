@@ -57,6 +57,11 @@
       <!-- vehicle individuality: hover CCW-CW pair diff -> +0.037 N·m yaw trim
            (identify_asymmetry.py, drone_144_260601_hold run2; 0.037→0.030 트림: pair_diff 0.195→0.159=real) -->
       <yaw_bias_torque>0.030</yaw_bias_torque>
+      <!-- L3 Dryden-style gusts (drag-coupled). sigma/L: M4/M5 fidelity 캘리브레이션 대상 -->
+      <gust_sigma_u>0.6</gust_sigma_u>
+      <gust_sigma_v>0.6</gust_sigma_v>
+      <gust_sigma_w>0.0</gust_sigma_w>
+      <gust_length>15</gust_length>
     </plugin>
   </model>
 </sdf>
