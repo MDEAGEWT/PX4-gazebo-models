@@ -14,7 +14,9 @@
       <link_name>base_link</link_name>
       <joint_prefix>rotor_</joint_prefix>
       <num_motors>4</num_motors>
-      <variant>V3</variant>
+      <!-- DSHOT: 0609 실비행 DShot↔ω 캘리브레이션 직선(919.9u+201.9 rad/s),
+           cmd를 0~1로 역산 후 적용, lag/delay 없음. 뒷단 kT(ω)는 V3 동일. -->
+      <variant>DSHOT</variant>
       <command_topic>command/motor_speed</command_topic>
       <cmd_min>150</cmd_min>
       <cmd_max>1000</cmd_max>
@@ -36,13 +38,22 @@
       <num_motors>4</num_motors>
       <history_length>20</history_length>
       <update_rate>100</update_rate>
-      <scale_factor>1.0</scale_factor>
+      <scale_factor>0.0</scale_factor>
       <!-- x500 idle 150 rad/s, hover ~620, max 1000 — disable NN below 300 -->
       <motor_active_threshold>300.0</motor_active_threshold>
       <!-- NN trained on PX4 FRD body / NED world (extract_px4_ulg.py output).
            Plugin converts FLU↔FRD body and ENU↔NED world internally.
            See gz_plugin/NeuroDynamicsPlugin.hh and GitHub issue #6. -->
       <training_frame>frd</training_frame>
+    </plugin>
+    <!-- RPG linear rotor drag (0609 real fit). ODM has no velocity term. -->
+    <plugin filename="RotorDragPlugin" name="neurogazebo::RotorDragPlugin">
+      <link_name>base_link</link_name>
+      <drag_x>0.191</drag_x>
+      <drag_y>0.223</drag_y>
+      <drag_z>0.0</drag_z>
+      <mass>2.087</mass>
+      <motor_active_threshold>100</motor_active_threshold>
     </plugin>
   </model>
 </sdf>
