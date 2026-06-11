@@ -228,7 +228,7 @@
           <pressure>
             <noise type="gaussian">
               <mean>0</mean>
-              <stddev>3</stddev>
+              <stddev>6</stddev>
             </noise>
           </pressure>
         </air_pressure>
@@ -270,19 +270,19 @@
             <x>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+                <stddev>0.0042</stddev>
               </noise>
             </x>
             <y>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+                <stddev>0.0042</stddev>
               </noise>
             </y>
             <z>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+                <stddev>0.0042</stddev>
               </noise>
             </z>
           </angular_velocity>
@@ -292,20 +292,20 @@
             <x>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.00637</stddev>
+                <stddev>0.7</stddev>
               </noise>
             </x>
             <y>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.00637</stddev>
+                <stddev>0.7</stddev>
               </noise>
             </y>
             <!-- Z axis: 0.70 mg-rms converted to m/ss-->
             <z>
               <noise type="gaussian">
                 <mean>0.0</mean>
-                <stddev>0.00686</stddev>
+                <stddev>0.7</stddev>
               </noise>
             </z>
           </linear_acceleration>
