@@ -40,6 +40,10 @@
       <history_length>20</history_length>
       <update_rate>100</update_rate>
       <scale_factor>0.0</scale_factor>
+      <!-- OOD guard: clamp NN inputs to training mean±3σ (normalization.yaml).
+           Without it the TCN extrapolates on takeoff ω / off-heading states
+           (raw output observed up to 308 N). 0 = off. -->
+      <input_clip_sigma>3.0</input_clip_sigma>
       <!-- x500 idle 150 rad/s, hover ~620, max 1000 — disable NN below 300 -->
       <motor_active_threshold>300.0</motor_active_threshold>
       <!-- NN trained on PX4 FRD body / NED world (extract_px4_ulg.py output).
