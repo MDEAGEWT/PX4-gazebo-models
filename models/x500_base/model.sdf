@@ -9,6 +9,14 @@
         <!-- 2026-05-11: base_link mass bumped 2.0 -> 2.0227 so that total
              sim drone mass (base + 4 rotors @ 0.016076923) = 2.087 kg
              matches real x500 measurement. See wiki/x500_drone.md. -->
+        <!-- 2026-07-15: CoG offset enabled by default — FLU (-2.3 mm aft,
+             +1.7 mm left), fresh CLEAN estimate from the 06-18 hold_hover
+             thrust-moment method (the earlier -4 mm was a contaminated
+             estimate — repo_audit_2026_07_02 A4/#120).  Models the real
+             x500's mass asymmetry; hover trim validated 2026-07-15.
+             NOTE: x500_base is shared, so stock x500 (MMM) inherits this
+             too — both models twin the same physical vehicle. -->
+        <pose>-0.0023 0.0017 0 0 0 0</pose>
         <mass>2.0226923076923077</mass>
         <inertia>
           <!-- Not scaled (~1.1% change negligible; pendulum re-measure pending) -->
