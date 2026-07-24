@@ -20,6 +20,13 @@
            고정하므로 맵은 그 명령점(u≈0.534)만 정함. 뒷단 kT(ω)는 V3 동일.
            (직선판은 variant=DSHOT: 919.9u+201.9.) -->
       <variant>DSHOT_C</variant>
+      <!-- physics-v2 (2026-07-20): 무보상 ESC 전압 효과 — 정적맵 입력 = u·(V/V_ref).
+           bus_voltage=0 (기본) = off. per-run으로 해당 real 소티의 V̄ 주입.
+           V_ref=15.71 (0714 호버앵커 소티). rotor_inertia = 로터 스핀 반작용 Ip·ω̇ [kg·m²],
+           0 (기본) = off. 식별 4.3e-5~7.5e-5. docs/odm_real_gap_analysis_2026_07_16.md -->
+      <bus_voltage>0.0</bus_voltage>
+      <bus_voltage_ref>15.71</bus_voltage_ref>
+      <rotor_inertia>4.3e-5</rotor_inertia>
       <command_topic>command/motor_speed</command_topic>
       <cmd_min>150</cmd_min>
       <cmd_max>1000</cmd_max>
@@ -82,6 +89,10 @@
            학습됨 → 대칭 sim에선 이 토크가 물리에도 NN에도 없어 통째로 비는 전제조건 위반,
            ③ NN 입력 ω의 per-motor 분포 정렬(대각쌍 분리 88 rad/s). 0으로 두면 대칭(ablation용). -->
       <yaw_bias_torque>0.043</yaw_bias_torque>
+      <!-- physics-v2: 로터 flapping 토크 τ_xy=−k_flap·(ẑ×v_body) [N·m/(m/s)].
+           0714 잔차 LSQ = 0.0867 (8소티 ±14%, 이동비행 τx/τy 잔차의 ~90%).
+           0=off. 2026-07-20 ablation으로 기본 채택. -->
+      <k_flap>0.0867</k_flap>
       <!-- airspeed-dependent vibration noise (aero buffeting): stddev = vib_gain*|v_body| [N.m].
            real gyro noise grows ~linearly with airspeed (0609 fit). 0 = stock white floor only.
            (2026-07-07 재이식됨 — staticvib 비교군용. 상태의존 진동은 ImuVibrationPlugin 사용.

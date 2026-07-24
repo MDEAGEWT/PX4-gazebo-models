@@ -19,13 +19,16 @@
         <pose>-0.0023 0.0017 0 0 0 0</pose>
         <mass>2.0226923076923077</mass>
         <inertia>
-          <!-- Not scaled (~1.1% change negligible; pendulum re-measure pending) -->
+          <!-- Izz 0.0334: 0714 위치가진 식별(±0.0017), 2026-07-20 yaw ablation으로
+               채택 확정 (유효관성 real 정합, stock 0.0400은 PX4 placeholder였음).
+               Ixx/Iyy는 폐루프 비식별이라 stock 유지 — 단 삼각부등식 Ixx+Iyy>=Izz
+               때문에 Izz 0.0334 하에서 Ixy 하한은 0.0167. -->
           <ixx>0.02166666666666667</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
           <iyy>0.02166666666666667</iyy>
           <iyz>0</iyz>
-          <izz>0.04000000000000001</izz>
+          <izz>0.0334</izz>
         </inertia>
       </inertial>
       <gravity>true</gravity>
