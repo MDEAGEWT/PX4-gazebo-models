@@ -17,7 +17,7 @@
              NOTE: x500_base is shared, so stock x500 (MMM) inherits this
              too — both models twin the same physical vehicle. -->
         <pose>-0.0023 0.0017 0 0 0 0</pose>
-        <mass>2.0226923076923077</mass>
+        <mass>2.0696923076923077</mass>
         <inertia>
           <!-- Izz 0.0334: 0714 위치가진 식별(±0.0017), 2026-07-20 yaw ablation으로
                채택 확정 (유효관성 real 정합, stock 0.0400은 PX4 placeholder였음).

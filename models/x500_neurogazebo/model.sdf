@@ -77,7 +77,7 @@
       <drag_x>0.191</drag_x>
       <drag_y>0.223</drag_y>
       <drag_z>0.0</drag_z>
-      <mass>2.087</mass>
+      <mass>2.134</mass>
       <motor_active_threshold>100</motor_active_threshold>
       <!-- DEPRECATED & REMOVED (2026-07-07 결정): gust_sigma_u/v/w, gust_length —
            파싱 유실 + 효과 불충분으로 폐기 (상세: docs/motor_vibration_imu/sim_vibration_model.md §4.5).
