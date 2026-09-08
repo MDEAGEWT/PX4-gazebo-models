@@ -24,6 +24,8 @@
            bus_voltage=0 (기본) = off. per-run으로 해당 real 소티의 V̄ 주입.
            V_ref=15.71 (0714 호버앵커 소티). rotor_inertia = 로터 스핀 반작용 Ip·ω̇ [kg·m²],
            0 (기본) = off. 식별 4.3e-5~7.5e-5. docs/odm_real_gap_analysis_2026_07_16.md -->
+      <!-- 세션 유효 kT 배율(라벨 kt_scale과 짝, 기본 1.0 = 표준밀도; 특정 real 세션 재현 시에만 세션 kt) -->
+      <kt_scale>1.0</kt_scale>
       <bus_voltage>0.0</bus_voltage>
       <bus_voltage_ref>15.71</bus_voltage_ref>
       <rotor_inertia>4.3e-5</rotor_inertia>
@@ -50,6 +52,14 @@
       <history_length>20</history_length>
       <update_rate>100</update_rate>
       <scale_factor>0.0</scale_factor>
+      <!-- per-channel A/B (2026-09-03): force/torque residual multipliers on top of
+           scale_factor*gate. 1.0/1.0 = legacy. torque-only run = force_scale 0.0. -->
+      <force_scale>1.0</force_scale>
+      <!-- physics-v4-lite (2026-09-07): NN 모터 입력 ω 배율 = 세션 √kt (밀도 정합). 기본 1.0 = 표준밀도 배포; 특정 real 세션 재현 시에만 사용. -->
+      <motor_omega_scale>1.0</motor_omega_scale>
+      <!-- 진단용 상수 본체힘 [N, FRD] — NN 힘 경로와 동일 지점에 주입, 기본 0 0 0 = off (§7.8 sim 응답 이득 실험) -->
+      <const_force_frd>0 0 0</const_force_frd>
+      <torque_scale>1.0</torque_scale>
       <!-- OOD guard: clamp NN inputs to training mean±3σ (normalization.yaml).
            Without it the TCN extrapolates on takeoff ω / off-heading states
            (raw output observed up to 308 N). 0 = off. -->
@@ -89,10 +99,17 @@
            학습됨 → 대칭 sim에선 이 토크가 물리에도 NN에도 없어 통째로 비는 전제조건 위반,
            ③ NN 입력 ω의 per-motor 분포 정렬(대각쌍 분리 88 rad/s). 0으로 두면 대칭(ablation용). -->
       <yaw_bias_torque>0.043</yaw_bias_torque>
-      <!-- physics-v2: 로터 flapping 토크 τ_xy=−k_flap·(ẑ×v_body) [N·m/(m/s)].
-           0714 잔차 LSQ = 0.0867 (8소티 ±14%, 이동비행 τx/τy 잔차의 ~90%).
-           0=off. 2026-07-20 ablation으로 기본 채택. -->
-      <k_flap>0.0867</k_flap>
+      <!-- physics-v3 (2026-08-05): M8 포화형 flapping이 상수 k_flap을 대체.
+           τ_xy = k_axis·(ω̄/ω_ref)⁻¹·(ẑ×v)/(1+c·v_hor)  (T3c 프로브 2026-08-03).
+           상수 0.0867은 고속에서 τxy 50~90% 과대주입(edge holdout R² 0.575 vs
+           M8 0.859) — flapping_probe_2026_08_03.md §T0-c.  라벨 짝: dshot_v3
+           (real_x500_comb_v3_0609out_0714in).  k_flap=0 유지(레거시 상수형 off;
+           roll/pitch 둘 다 0으로 두면 M8 off → 상수형으로 복귀 가능). -->
+      <k_flap>0.0</k_flap>
+      <k_flap_roll>0.130</k_flap_roll>
+      <k_flap_pitch>0.163</k_flap_pitch>
+      <k_flap_c>0.19</k_flap_c>
+      <k_flap_omega_ref>700.0</k_flap_omega_ref>
       <!-- airspeed-dependent vibration noise (aero buffeting): stddev = vib_gain*|v_body| [N.m].
            real gyro noise grows ~linearly with airspeed (0609 fit). 0 = stock white floor only.
            (2026-07-07 재이식됨 — staticvib 비교군용. 상태의존 진동은 ImuVibrationPlugin 사용.
