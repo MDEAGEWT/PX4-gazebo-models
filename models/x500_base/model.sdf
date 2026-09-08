@@ -23,12 +23,12 @@
                채택 확정 (유효관성 real 정합, stock 0.0400은 PX4 placeholder였음).
                Ixx/Iyy는 폐루프 비식별이라 stock 유지 — 단 삼각부등식 Ixx+Iyy>=Izz
                때문에 Izz 0.0334 하에서 Ixy 하한은 0.0167. -->
-          <ixx>0.02166666666666667</ixx>
+          <ixx>0.021827</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.02166666666666667</iyy>
+          <iyy>0.022724</iyy>
           <iyz>0</iyz>
-          <izz>0.0334</izz>
+          <izz>0.031000</izz>
         </inertia>
       </inertial>
       <gravity>true</gravity>
